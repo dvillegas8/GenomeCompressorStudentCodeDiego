@@ -32,7 +32,6 @@ public class BlickCompressor {
         // Read in the string and find the first instance of TARGET
         String s = BinaryStdIn.readString();
         int n = s.length();
-
         // Write out each character
         for (int i = 0; i < n; i++) {
             if (i + LEN <= n && s.substring(i,i+LEN).equals(TARGET)) {

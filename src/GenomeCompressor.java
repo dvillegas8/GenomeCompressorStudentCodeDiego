@@ -26,7 +26,11 @@ public class GenomeCompressor {
     public static void compress() {
 
         // TODO: complete the compress() method
-
+        String s = BinaryStdIn.readString();
+        int n = s.length();
+        for(int i = 0; i < n;i++){
+            BinaryStdOut.write(s.charAt(i), 7);
+        }
         BinaryStdOut.close();
     }
 
@@ -36,7 +40,9 @@ public class GenomeCompressor {
     public static void expand() {
 
         // TODO: complete the expand() method
-
+        while (!BinaryStdIn.isEmpty()) {
+            BinaryStdOut.write(BinaryStdIn.readChar(7));
+        }
         BinaryStdOut.close();
     }
 
