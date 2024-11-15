@@ -24,12 +24,22 @@ public class GenomeCompressor {
      * { A, C, T, G } from standard input; compresses and writes the results to standard output.
      */
     public static void compress() {
-
-        // TODO: complete the compress() method
+        // Map where index is the letters and value is the code assigned to the letter
+        int[] codes = new int['T' + 1];
+        // Code for letter A
+        codes['A'] = 0b00;
+        // Code for letter C
+        codes['C'] = 0b01;
+        // Code for letter G
+        codes['G'] = 0b10;
+        // Code for letter T
+        codes['T'] = 0b11;
         String s = BinaryStdIn.readString();
         int n = s.length();
+        // Metadata which tells us how many codes are going to be written
+        BinaryStdOut.write(n);
         for(int i = 0; i < n;i++){
-            BinaryStdOut.write(s.charAt(i), 7);
+            BinaryStdOut.write(codes[s.charAt(i)], 2);
         }
         BinaryStdOut.close();
     }
@@ -38,10 +48,19 @@ public class GenomeCompressor {
      * Reads a binary sequence from standard input; expands and writes the results to standard output.
      */
     public static void expand() {
-
-        // TODO: complete the expand() method
-        while (!BinaryStdIn.isEmpty()) {
-            BinaryStdOut.write(BinaryStdIn.readChar(7));
+        // Map where index is the code and the value is the letter/char
+        char[] letters = new char[4];
+        letters[0] = 'A';
+        letters[1] = 'C';
+        letters[2] = 'G';
+        letters[3] = 'T';
+        // Get the number of codes in the file
+        int size = BinaryStdIn.readInt();
+        // Int to store the 2 bit codes
+        int letter = 0;
+        for(int i = 0; i < size; i++){
+            letter = BinaryStdIn.readInt(2);
+            BinaryStdOut.write(letters[letter]);
         }
         BinaryStdOut.close();
     }
